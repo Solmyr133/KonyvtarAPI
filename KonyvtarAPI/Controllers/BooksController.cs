@@ -114,5 +114,41 @@ namespace KonyvtarAPI.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("search/author")]
+        public async Task<ActionResult<IEnumerable<Book>>> GetBooksByAuthor([FromQuery] string author)
+        {
+            if (string.IsNullOrEmpty(author))
+            {
+                return BadRequest("A szerző megadása kötelező.");
+            }
+
+            var books = await _context.Books.Where(b => EF.Functions.Like(b.Author.ToLower(), "%" + author.ToLower() + "%")).ToListAsync();
+
+            if (books == null || books.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(books);
+        }
+
+        [HttpGet("search/title")]
+        public async Task<ActionResult<IEnumerable<Book>>> GetBooksByTitle([FromQuery] string title)
+        {
+            if (string.IsNullOrEmpty(title))
+            {
+                return BadRequest("A cím megadása kötelező.");
+            }
+
+            var books = await _context.Books.Where(b => EF.Functions.Like(b.Title.ToLower(), "%" + title.ToLower() + "%")).ToListAsync();
+
+            if (books == null || books.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(books);
+        }
     }
 }

@@ -41,6 +41,16 @@ namespace KonyvtarAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Book>> AddBook(CreateBookDTO createBookDTO)
         {
+            if (string.IsNullOrEmpty(createBookDTO.Author) || string.IsNullOrEmpty(createBookDTO.Title))
+            {
+                return BadRequest("A szerzőt és címet kötelező megadni!");
+            }
+
+            if (createBookDTO.PublishedYear < 0 || createBookDTO.PublishedYear > DateTime.Now.Year)
+            {
+                return BadRequest("Hibás kiadási év.");
+            }
+
             var currentBook = new Book
             {
                 Title = createBookDTO.Title,
@@ -60,6 +70,16 @@ namespace KonyvtarAPI.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<Book>> UpdateBook(int id, CreateBookDTO createBookDTO)
         {
+            if (string.IsNullOrEmpty(createBookDTO.Author) || string.IsNullOrEmpty(createBookDTO.Title))
+            {
+                return BadRequest("A szerzőt és címet kötelező megadni!");
+            }
+
+            if (createBookDTO.PublishedYear < 0 || createBookDTO.PublishedYear > DateTime.Now.Year)
+            {
+                return BadRequest("Hibás kiadási év.");
+            }
+
             var currentBook = await _context.Books.FindAsync(id);
 
             if (currentBook == null)

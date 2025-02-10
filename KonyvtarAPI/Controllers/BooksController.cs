@@ -78,5 +78,21 @@ namespace KonyvtarAPI.Controllers
             return Ok(currentBook);
         }
 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteBook(int id)
+        {
+            var book = await _context.Books.FindAsync(id);
+
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            _context.Books.Remove(book);
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }

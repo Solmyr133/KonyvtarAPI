@@ -56,5 +56,27 @@ namespace KonyvtarAPI.Controllers
 
             return CreatedAtAction(nameof(GetBookById), new { id = currentBook.Id }, currentBook);
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Book>> UpdateBook(int id, CreateBookDTO createBookDTO)
+        {
+            var currentBook = await _context.Books.FindAsync(id);
+
+            if (currentBook == null)
+            {
+                return NotFound();
+            }
+
+            currentBook.Title = createBookDTO.Title;
+            currentBook.Author = createBookDTO.Author;
+            currentBook.PublishedYear = createBookDTO.PublishedYear;
+            currentBook.Genre = createBookDTO.Genre;
+            currentBook.Price = createBookDTO.Price;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(currentBook);
+        }
+
     }
 }

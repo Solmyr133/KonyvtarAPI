@@ -112,3 +112,4 @@ C:\Users\Tanulo\Desktop\KonyvtarAPI\KonyvtarAPI\KonyvtarAPI\obj\Debug\net8.0\ref
 C:\Users\Tanulo\Desktop\KonyvtarAPI\KonyvtarAPI\KonyvtarAPI\obj\Debug\net8.0\KonyvtarAPI.pdb
 C:\Users\Tanulo\Desktop\KonyvtarAPI\KonyvtarAPI\KonyvtarAPI\obj\Debug\net8.0\KonyvtarAPI.genruntimeconfig.cache
 C:\Users\Tanulo\Desktop\KonyvtarAPI\KonyvtarAPI\KonyvtarAPI\obj\Debug\net8.0\ref\KonyvtarAPI.dll
+C:\Users\Tanulo\Desktop\KonyvtarAPI\KonyvtarAPI\KonyvtarAPI\obj\Debug\net8.0\KonyvtarAPI.sourcelink.json
